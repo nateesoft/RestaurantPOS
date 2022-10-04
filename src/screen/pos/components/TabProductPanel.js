@@ -10,15 +10,17 @@ const TabProductPanel = () => {
   const [routes] = useState(TabHeaders);
 
   const renderScene = ({route}) => {
-    if (route.key === 'a') {
-      return <ProductPanel color="" />;
+    let color = '';
+    if (route.key === 'B') {
+      color = 'red';
+    } else if (route.key === 'C') {
+      color = 'yellow';
+    } else if (route.key === 'D') {
+      color = 'blue';
+    } else {
+      color = '';
     }
-    if (route.key === 'b') {
-      return <ProductPanel color="yellow" />;
-    }
-    if (route.key === 'c') {
-      return <ProductPanel color="red" />;
-    }
+    return <ProductPanel color={color} tabAt={route.key} />;
   };
 
   const renderTabBar = props => (
@@ -40,8 +42,14 @@ const TabProductPanel = () => {
 };
 
 const styles = StyleSheet.create({
-  tabBar: {backgroundColor: '#123456', height: 62, justifyContent: 'center'},
-  tabBarIndicator: {backgroundColor: 'yellow'},
+  tabBar: {
+    backgroundColor: '#123456',
+    height: 62,
+    justifyContent: 'center',
+  },
+  tabBarIndicator: {
+    backgroundColor: 'yellow',
+  },
 });
 
 export default TabProductPanel;

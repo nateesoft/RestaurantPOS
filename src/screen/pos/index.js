@@ -12,7 +12,7 @@ const PosScreen = props => {
     <View style={styles.container}>
       <View style={styles.leftPanel}>
         <View style={styles.totalAmount}>
-          <TotalItem netTotalAmount={1000} />
+          <TotalItem tableNo={'001'} netTotalAmount={1000} />
         </View>
         <View style={styles.listItems}>
           <ListItems />

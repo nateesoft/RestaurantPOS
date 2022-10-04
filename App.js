@@ -1,12 +1,12 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-import LoginScreen from './components/screen/login';
-import FloorPlane from './components/screen/floorplan';
-import PosScreen from './components/screen/pos';
-import PaymentScreen from './components/screen/payment';
 import {NativeBaseProvider} from 'native-base';
+
+import LoginScreen from './src/screen/login';
+import FloorPlane from './src/screen/floorplan';
+import PosScreen from './src/screen/pos';
+import PaymentScreen from './src/screen/payment';
 
 const Stack = createNativeStackNavigator();
 

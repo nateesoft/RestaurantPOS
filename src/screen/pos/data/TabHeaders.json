@@ -1,0 +1,18 @@
+[
+    {
+       "key":"A",
+       "title":"Main Dish"
+    },
+    {
+       "key":"B",
+       "title":"Appetizer"
+    },
+    {
+       "key":"C",
+       "title":"Dessert"
+    },
+    {
+       "key":"D",
+       "title":"Drink"
+    }
+ ]

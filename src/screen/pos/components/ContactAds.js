@@ -11,9 +11,9 @@ const ContactAds = () => {
         marqueeOnStart={true}
         loop={true}
         delay={1000}>
-        <Text>( Support 24/7 )</Text>
+        <Text>*** ( Support 24/7 ) ***</Text>
         <Text style={styles.textRed}>
-          ...ถ้าพบปัญหาแจ้งได้ที่ 086-4108403...
+          ...#ถ้าพบปัญหาแจ้งได้ที่ 086-4108403...
         </Text>
         <Text style={styles.textOrange}>ดูแลตลอด 24 ชั่วโมง ทุกวัน ^^</Text>
       </MarqueeText>
@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#2756B3',
+    opacity: 0.85,
   },
   text: {
     textAlign: 'center',

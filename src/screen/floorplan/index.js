@@ -1,4 +1,3 @@
-import {Spacer} from 'native-base';
 import React from 'react';
 import {View, Text, Button} from 'react-native';
 
