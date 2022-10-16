@@ -15,13 +15,15 @@ const GetButton = ({title}) => {
   );
 };
 
-const ActionPanel = ({navigation}) => {
+const ActionPanel = props => {
+  const {navigation} = props;
+  const {tableNo} = props.route.params;
   return (
     <View style={{flexDirection: 'row'}}>
       <View style={{flex: 1, margin: 5, marginRight: 2.5}}>
         <TouchableHighlight
           style={{height: '100%'}}
-          onPress={() => navigation.navigate('PaymentScreen')}>
+          onPress={() => navigation.navigate('PaymentScreen', {tableNo})}>
           <GetButton title="PAYMENT" />
         </TouchableHighlight>
       </View>
@@ -29,7 +31,7 @@ const ActionPanel = ({navigation}) => {
         <TouchableHighlight
           style={{flex: 1}}
           onPress={() => navigation.navigate('FloorPlanScreen')}>
-          <GetButton title="HOLD" />
+          <GetButton title="BACK" />
         </TouchableHighlight>
       </View>
     </View>

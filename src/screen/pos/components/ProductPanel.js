@@ -21,7 +21,7 @@ const ProductPanel = ({color, tabAt}) => {
 
   const getAllProduct = async () => {
     try {
-      const url = `http://192.168.100.101:9090/api/product/allGroups/${tabAt}`;
+      const url = `http://192.168.100.102:9090/api/product/allGroups/${tabAt}`;
       const response = await fetch(url);
       const json = await response.json();
       setProducts(json);

@@ -5,7 +5,7 @@ const TotalItem = ({tableNo, netTotalAmount}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.textTableNo}>TABLE {tableNo}</Text>
-      <Text style={styles.textTotal}>Total {netTotalAmount} $</Text>
+      <Text style={styles.textTotal}>Total ${netTotalAmount}</Text>
     </View>
   );
 };

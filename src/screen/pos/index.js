@@ -8,11 +8,12 @@ import TabProductPanel from './components/TabProductPanel';
 import ContactAds from './components/ContactAds';
 
 const PosScreen = props => {
+  const {tableNo} = props.route.params;
   return (
     <View style={styles.container}>
       <View style={styles.leftPanel}>
         <View style={styles.totalAmount}>
-          <TotalItem tableNo={'001'} netTotalAmount={1000} />
+          <TotalItem tableNo={tableNo} netTotalAmount={1000} />
         </View>
         <View style={styles.listItems}>
           <ListItems />

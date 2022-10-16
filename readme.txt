@@ -7,3 +7,7 @@ xcrun xctrace list devices
 npx react-native run-ios --device "hathaipat1991"
 
 npx react-native info
+
+
+find icons
+https://oblador.github.io/react-native-vector-icons/
