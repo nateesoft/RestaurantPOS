@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -10,7 +10,8 @@ import {
 import {FlatGrid} from 'react-native-super-grid';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import ModalAlert from '../../../components/modal';
+import {POSContext} from '../../../components/context';
+import {SERVER_IP} from '../../../utils/GetIP';
 
 const People = ({item}) => {
   return (
@@ -33,12 +34,13 @@ const People = ({item}) => {
   );
 };
 
-const TableInfo = ({item, navigation}) => {
+const TableInfo = ({item}) => {
+  const {openTable} = useContext(POSContext);
   return (
     <TouchableHighlight
       activeOpacity={0.6}
       underlayColor="orange"
-      onPress={() => navigation.navigate('PosScreen', {tableNo: item.key})}>
+      onPress={() => openTable(item.key)}>
       <View
         style={[
           styles.container,
@@ -77,12 +79,12 @@ const TablePanel = _props => {
   const [isLoading, setLoading] = useState(true);
   const [tables, setTables] = useState([]);
   const image = {
-    uri: 'http://192.168.100.102:9090/api/product/images/bgImage.jpg',
+    uri: `${SERVER_IP}/api/product/images/bgImage.jpg`,
   };
 
   const getAllTables = async () => {
     try {
-      const url = `http://192.168.100.102:9090/api/table/allTables/${tabAt}`;
+      const url = `${SERVER_IP}/api/table/allTables/${tabAt}`;
       const response = await fetch(url);
       const json = await response.json();
       setTables(json);
@@ -103,7 +105,6 @@ const TablePanel = _props => {
         <ActivityIndicator />
       ) : (
         <View style={{flex: 1}}>
-          {/* <ModalAlert show={true} />; */}
           <ImageBackground
             source={image}
             resizeMode="cover"

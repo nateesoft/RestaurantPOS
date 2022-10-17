@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, Text, TouchableHighlight} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+
+import {POSContext} from '../../../components/context';
 
 const GetButton = ({title}) => {
   return (
@@ -18,6 +20,7 @@ const GetButton = ({title}) => {
 const ActionPanel = props => {
   const {navigation} = props;
   const {tableNo} = props.route.params;
+  const {holdTable} = useContext(POSContext);
   return (
     <View style={{flexDirection: 'row'}}>
       <View style={{flex: 1, margin: 5, marginRight: 2.5}}>
@@ -28,9 +31,7 @@ const ActionPanel = props => {
         </TouchableHighlight>
       </View>
       <View style={{flex: 1, margin: 5, marginLeft: 2.5}}>
-        <TouchableHighlight
-          style={{flex: 1}}
-          onPress={() => navigation.navigate('FloorPlanScreen')}>
+        <TouchableHighlight style={{flex: 1}} onPress={() => holdTable()}>
           <GetButton title="BACK" />
         </TouchableHighlight>
       </View>

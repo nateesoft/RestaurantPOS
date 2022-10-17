@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 
+import {POSContext} from '../../components/context';
 import ListItem from './components/ListItems';
 import PaymentType from './components/PaymentType';
 import InputPayment from './components/InputPayment';
@@ -60,7 +61,8 @@ const InputPaymentPanel = props => {
   );
 };
 
-const ActionPanel = ({navigation, tableNo}) => {
+const ActionPanel = ({tableNo, navigation}) => {
+  const {checkBill} = useContext(POSContext);
   return (
     <View style={styles.actionContainer}>
       <View style={styles.buttonBack}>
@@ -71,9 +73,7 @@ const ActionPanel = ({navigation, tableNo}) => {
         </TouchableHighlight>
       </View>
       <View style={styles.confirmContainer}>
-        <TouchableHighlight
-          underlayColor="blue"
-          onPress={() => navigation.navigate('FloorPlanScreen')}>
+        <TouchableHighlight underlayColor="blue" onPress={() => checkBill()}>
           <Text style={styles.buttonConfirm}>CONFIRM</Text>
         </TouchableHighlight>
       </View>

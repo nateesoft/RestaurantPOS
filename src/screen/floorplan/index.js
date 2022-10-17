@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 
+import {AuthContext} from '../../components/context';
 import FloorPlanPanel from './components/FloorPlanPanel';
 import CardsAds from './components/ContactAds';
 
 const FloorPlaneScreen = props => {
-  const {navigation} = props;
+  const {signOut} = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <View style={styles.rightPanel}>
@@ -19,7 +21,7 @@ const FloorPlaneScreen = props => {
           <TouchableHighlight
             activeOpacity={0.6}
             underlayColor="red"
-            onPress={() => navigation.navigate('LoginScreen')}>
+            onPress={() => signOut()}>
             <Text style={styles.textLogout}>LOGOUT</Text>
           </TouchableHighlight>
         </View>

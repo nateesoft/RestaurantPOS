@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, Button, StyleSheet, Pressable} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
+import {AuthContext} from '../../components/context';
 import '../../../assets/i18n/i18n';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = () => {
   const {t, i18n} = useTranslation();
   const [currentLanguage, setLanguage] = useState('en');
   const changeLanguage = value => {
@@ -13,6 +14,8 @@ const LoginScreen = ({navigation}) => {
       .then(() => setLanguage(value))
       .catch(err => console.log(err));
   };
+
+  const {signIn} = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -35,10 +38,7 @@ const LoginScreen = ({navigation}) => {
         }}>
         <Text>เลือกภาษาไทย</Text>
       </Pressable>
-      <Button
-        title="Login to System (2022)"
-        onPress={() => navigation.navigate('FloorPlanScreen')}
-      />
+      <Button title="Login to System (2022)" onPress={() => signIn()} />
     </View>
   );
 };

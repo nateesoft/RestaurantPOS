@@ -5,13 +5,15 @@ import {
   TouchableHighlight,
   View,
   Button,
+  Text,
   ActivityIndicator,
 } from 'react-native';
-import {Text} from 'native-base';
 import {FlatGrid} from 'react-native-super-grid';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import {SERVER_IP} from '../../../utils/GetIP';
 
 const ProductPanel = ({color, tabAt}) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -21,7 +23,7 @@ const ProductPanel = ({color, tabAt}) => {
 
   const getAllProduct = async () => {
     try {
-      const url = `http://192.168.100.102:9090/api/product/allGroups/${tabAt}`;
+      const url = `${SERVER_IP}/api/product/allGroups/${tabAt}`;
       const response = await fetch(url);
       const json = await response.json();
       setProducts(json);
@@ -57,7 +59,7 @@ const ProductPanel = ({color, tabAt}) => {
     setProducts(newProduct);
   };
 
-  const CardMenu = ({item, color, onAdd, onRemove}) => {
+  const CardMenu = ({item, onAdd, onRemove}) => {
     return (
       <TouchableHighlight
         activeOpacity={0.6}
@@ -132,7 +134,6 @@ const ProductPanel = ({color, tabAt}) => {
           renderItem={({item}) => (
             <CardMenu
               item={item}
-              color={color}
               onAdd={() => updateSelectProduct(item.id)}
               onRemove={() => updateRemoveProduct(item.id)}
             />

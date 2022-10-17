@@ -14,6 +14,8 @@ import {SwipeListView} from 'react-native-swipe-list-view';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 
+import {SERVER_IP} from '../../../utils/GetIP';
+
 const ListItem = () => {
   const [isLoading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
@@ -22,7 +24,7 @@ const ListItem = () => {
 
   const getOrders = async () => {
     try {
-      const url = 'http://192.168.100.102:9090/api/order/allOrders';
+      const url = `${SERVER_IP}/api/order/allOrders`;
       const response = await fetch(url);
       const json = await response.json();
       setOrders(json.orders);

@@ -8,13 +8,15 @@ import {
   FlatList,
 } from 'react-native';
 
+import {SERVER_IP} from '../../../utils/GetIP';
+
 const ListItem = () => {
   const [isLoading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
 
   const getOrders = async () => {
     try {
-      const url = 'http://192.168.100.102:9090/api/order/allOrders';
+      const url = `${SERVER_IP}/api/order/allOrders`;
       const response = await fetch(url);
       const json = await response.json();
       setOrders(json.orders);
