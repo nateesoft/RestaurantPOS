@@ -17,22 +17,37 @@ const GetButton = ({title}) => {
   );
 };
 
+const GetBackButton = ({title}) => {
+  return (
+    <LinearGradient
+      colors={['yellow', 'red', 'pink']}
+      style={styles.container}
+      start={{x: 0, y: 1}}
+      end={{x: 1, y: 0.9}}
+      locations={[0, 0.3, 0.9]}>
+      <Text style={styles.textBlack}>{title}</Text>
+    </LinearGradient>
+  );
+};
+
 const ActionPanel = props => {
   const {navigation} = props;
   const {tableNo} = props.route.params;
   const {holdTable} = useContext(POSContext);
   return (
-    <View style={{flexDirection: 'row'}}>
-      <View style={{flex: 1, margin: 5, marginRight: 2.5}}>
+    <View style={styles.actionContainer}>
+      <View style={styles.buttonContainer}>
         <TouchableHighlight
-          style={{height: '100%'}}
-          onPress={() => navigation.navigate('PaymentScreen', {tableNo})}>
-          <GetButton title="PAYMENT" />
+          style={styles.buttonBack}
+          onPress={() => holdTable()}>
+          <GetBackButton title="BACK" />
         </TouchableHighlight>
       </View>
-      <View style={{flex: 1, margin: 5, marginLeft: 2.5}}>
-        <TouchableHighlight style={{flex: 1}} onPress={() => holdTable()}>
-          <GetButton title="BACK" />
+      <View style={styles.buttonContainer}>
+        <TouchableHighlight
+          style={styles.buttonPayment}
+          onPress={() => navigation.navigate('PaymentScreen', {tableNo})}>
+          <GetButton title="PAYMENT" />
         </TouchableHighlight>
       </View>
     </View>
@@ -62,6 +77,19 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     color: 'blue',
   },
+  textBlack: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    fontSize: 22,
+    fontWeight: 'bold',
+    shadowColor: 'black',
+    color: 'black',
+  },
+  actionContainer: {flexDirection: 'row'},
+  buttonContainer: {flex: 1, margin: 5, marginRight: 2.5},
+  buttonBack: {flex: 1},
+  buttonPayment: {height: '100%'},
 });
 
 export default ActionPanel;

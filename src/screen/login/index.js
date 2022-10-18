@@ -70,6 +70,13 @@ const applications = [
   {id: 11, name: 'CHAT', version: '1.0.0', desc: 'คุยงาน', color: '#11A408'},
   {
     id: 12,
+    name: 'BRANCH CONTROL',
+    version: '0.8.3',
+    desc: 'ควบคุมสาขา',
+    color: 'chocolate',
+  },
+  {
+    id: 13,
     name: 'SETTINGS',
     version: '3.0.0',
     desc: 'ตั้งค่าระบบ',
@@ -80,6 +87,7 @@ const applications = [
 const LoginScreen = () => {
   const {t, i18n} = useTranslation();
   const [currentLanguage, setLanguage] = useState('en');
+  const [appSelect, setAppSelect] = useState('');
   const changeLanguage = value => {
     i18n
       .changeLanguage(value)
@@ -95,11 +103,61 @@ const LoginScreen = () => {
         onPress={onPress}
         style={[styles.appCard, {backgroundColor: color}]}>
         <>
-          <Text style={{color: 'pink', fontSize: 14}}>{desc}</Text>
+          <Text style={styles.appDesc}>{desc}</Text>
           <Text style={styles.appText}>{name}</Text>
           <Text style={styles.appVersionText}>{version}</Text>
         </>
       </TouchableHighlight>
+    );
+  };
+
+  const handleClick = (comp, appName) => {
+    setAppSelect(appName);
+    comp.card.flip();
+  };
+
+  const LoginForm = () => {
+    return (
+      <View style={styles.loginContainer}>
+        <Text style={{fontSize: 48, fontWeight: 'bold', color: 'blue'}}>
+          APP: {appSelect}
+        </Text>
+        <Text>{t('hello')} </Text>
+        <Text>{t('this line is translated')}</Text>
+        <Pressable
+          onPress={() => changeLanguage('en')}
+          style={{
+            backgroundColor: currentLanguage === 'en' ? '#33A850' : '#d3d3d3',
+            padding: 20,
+          }}>
+          <Text>Select English</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => changeLanguage('th')}
+          style={{
+            backgroundColor: currentLanguage === 'th' ? '#33A850' : '#d3d3d3',
+            padding: 20,
+          }}>
+          <Text>เลือกภาษาไทย</Text>
+        </Pressable>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <View style={{width: 200}}>
+            <Button
+              title="Back to Home page"
+              onPress={() => this.card.flip()}
+              color="green"
+            />
+          </View>
+          <View style={{width: 250}}>
+            <Button title="Login to System (2022)" onPress={() => signIn()} />
+          </View>
+        </View>
+      </View>
     );
   };
 
@@ -123,56 +181,13 @@ const LoginScreen = () => {
                     desc={item.desc}
                     version={item.version}
                     color={item.color}
-                    onPress={() => this.card.flip()}
+                    onPress={() => handleClick(this, `${item.name}`)}
                   />
                 )}
               />
             </View>
           }
-          item2={
-            <View style={styles.loginContainer}>
-              <Text>{t('hello')} </Text>
-              <Text>{t('this line is translated')}</Text>
-              <Pressable
-                onPress={() => changeLanguage('en')}
-                style={{
-                  backgroundColor:
-                    currentLanguage === 'en' ? '#33A850' : '#d3d3d3',
-                  padding: 20,
-                }}>
-                <Text>Select English</Text>
-              </Pressable>
-              <Pressable
-                onPress={() => changeLanguage('th')}
-                style={{
-                  backgroundColor:
-                    currentLanguage === 'th' ? '#33A850' : '#d3d3d3',
-                  padding: 20,
-                }}>
-                <Text>เลือกภาษาไทย</Text>
-              </Pressable>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}>
-                <View style={{width: 200}}>
-                  <Button
-                    title="Back to Home page"
-                    onPress={() => this.card.flip()}
-                    color="green"
-                  />
-                </View>
-                <View style={{width: 250}}>
-                  <Button
-                    title="Login to System (2022)"
-                    onPress={() => signIn()}
-                  />
-                </View>
-              </View>
-            </View>
-          }
+          item2={<LoginForm />}
         />
       </View>
     </View>
@@ -227,6 +242,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'blue',
   },
+  appDesc: {color: 'pink', fontSize: 14},
 });
 
 export default LoginScreen;

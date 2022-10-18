@@ -16,7 +16,7 @@ const InputPayment = props => {
     creditAmount,
     qrAmount,
     trueAmount,
-    otherAmount,
+    pointAmount,
     tonAmount,
   } = props;
 
@@ -50,7 +50,7 @@ const InputPayment = props => {
     } else if (type === 'qrcode') {
       return (
         <>
-          <Text style={styles.text}>QR Code:</Text>
+          <Text style={styles.text}>QR CODE:</Text>
           <TextInput
             style={styles.input}
             value={qrAmount}
@@ -63,7 +63,7 @@ const InputPayment = props => {
     } else if (type === 'truewallet') {
       return (
         <>
-          <Text style={styles.text}>True wallet:</Text>
+          <Text style={styles.text}>TRUE WALLET:</Text>
           <TextInput
             style={styles.input}
             value={trueAmount}
@@ -73,14 +73,14 @@ const InputPayment = props => {
           />
         </>
       );
-    } else if (type === 'other') {
+    } else if (type === 'point') {
       return (
         <>
-          <Text style={styles.text}>Other:</Text>
+          <Text style={styles.text}>POINT:</Text>
           <TextInput
             style={styles.input}
-            value={otherAmount}
-            onFocus={() => setInput('other')}
+            value={pointAmount}
+            onFocus={() => setInput('point')}
             showSoftInputOnFocus={false}
             keyboardType="numeric"
           />

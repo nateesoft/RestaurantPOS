@@ -15,17 +15,15 @@ import {SERVER_IP} from '../../../utils/GetIP';
 
 const People = ({item}) => {
   return (
-    <View style={{width: 25}}>
+    <View style={styles.peopleContainer}>
       {item.type === 'M' ? (
         <MaterialCommunityIcons size={25} color="#2469C6" name="face-man" />
       ) : (
         <MaterialCommunityIcons size={25} color="#C220C4" name="face-woman" />
       )}
       {item.call ? (
-        <View style={{position: 'absolute', top: 0, left: 0}}>
-          <Text style={{color: 'red', fontSize: 22, fontWeight: 'bold'}}>
-            !
-          </Text>
+        <View style={styles.peopleView}>
+          <Text style={styles.peopleCall}>!</Text>
         </View>
       ) : (
         <></>
@@ -41,12 +39,8 @@ const TableInfo = ({item}) => {
       activeOpacity={0.6}
       underlayColor="orange"
       onPress={() => openTable(item.key)}>
-      <View
-        style={[
-          styles.container,
-          {backgroundColor: item.status === 'Check In' ? 'pink' : '#F0D7AD'},
-        ]}>
-        <Text style={[styles.text, {fontSize: 12}]}>
+      <View style={[styles.container, styles.tableInfo(item)]}>
+        <Text style={[styles.text, styles.textCustomer]}>
           {item.title}_C:({item.customerCount})
         </Text>
         {item.waiter ? (
@@ -54,17 +48,8 @@ const TableInfo = ({item}) => {
         ) : (
           <></>
         )}
-        <Text style={{fontSize: 10, textAlign: 'center'}}>
-          Start time: 00.00
-        </Text>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            margin: 10,
-          }}>
+        <Text style={styles.textTime}>Start time: 00.00</Text>
+        <View style={styles.peopleList}>
           {item.customer.map((_item, index) => {
             return <People key={_item.key} item={item} />;
           })}
@@ -104,12 +89,12 @@ const TablePanel = _props => {
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <View style={{flex: 1}}>
+        <View style={styles.tableContainer}>
           <ImageBackground
             source={image}
             resizeMode="cover"
-            imageStyle={{opacity: 0.75}}
-            style={{flex: 1, justifyContent: 'center'}}>
+            imageStyle={styles.imageStyle}
+            style={styles.imageBackground}>
             <FlatGrid
               itemDimension={100}
               data={tables}
@@ -130,6 +115,7 @@ const TablePanel = _props => {
 };
 
 const styles = StyleSheet.create({
+  tableContainer: {flex: 1},
   container: {
     borderWidth: 1,
     borderRadius: 5,
@@ -148,6 +134,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 10,
+  },
+  imageBackground: {flex: 1, justifyContent: 'center'},
+  imageStyle: {opacity: 0.75},
+  peopleContainer: {width: 25},
+  peopleView: {position: 'absolute', top: 0, left: 0},
+  peopleCall: {color: 'red', fontSize: 22, fontWeight: 'bold'},
+  tableInfo: item => ({
+    backgroundColor: item.status === 'Check In' ? 'pink' : '#F0D7AD',
+  }),
+  textCustomer: {fontSize: 12},
+  textTime: {fontSize: 10, textAlign: 'center'},
+  peopleList: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    margin: 10,
   },
 });
 

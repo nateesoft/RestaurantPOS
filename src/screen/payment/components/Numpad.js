@@ -9,7 +9,7 @@ const NumberPad = ({item}) => {
       <TouchableHighlight
         onPress={() => console.log('touch')}
         underlayColor="white"
-        style={{flex: 1}}>
+        style={styles.numberPad}>
         <View style={styles.imagePad}>
           <Icons name="delete" size={35} color="white" />
         </View>
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     color: 'white',
     borderRadius: 10,
   },
+  numberPad: {flex: 1},
 });
 
 export default NumpadControl;

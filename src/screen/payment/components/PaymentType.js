@@ -7,7 +7,7 @@ const PaymentType = ({setInputs}) => {
   const [selectCredit, setSelectCredit] = useState(false);
   const [selectQrCode, setSelectQrCode] = useState(false);
   const [selectTrueWallet, setSelectTrueWallet] = useState(false);
-  const [selectOther, setSelectOther] = useState(false);
+  const [selectPoint, setSelectPoint] = useState(false);
 
   const selectType = type => {
     if (type === 'cash') {
@@ -22,8 +22,8 @@ const PaymentType = ({setInputs}) => {
     if (type === 'truewallet') {
       setSelectTrueWallet(!selectTrueWallet);
     }
-    if (type === 'other') {
-      setSelectOther(!selectOther);
+    if (type === 'point') {
+      setSelectPoint(!selectPoint);
     }
   };
 
@@ -42,8 +42,8 @@ const PaymentType = ({setInputs}) => {
       if (selectTrueWallet) {
         newInput.push('truewallet');
       }
-      if (selectOther) {
-        newInput.push('other');
+      if (selectPoint) {
+        newInput.push('point');
       }
       if (newInput.length === 0) {
         newInput.push('cash');
@@ -53,13 +53,13 @@ const PaymentType = ({setInputs}) => {
     };
 
     manageListType();
-  }, [selectCash, selectCredit, selectQrCode, selectTrueWallet, selectOther]);
+  }, [selectCash, selectCredit, selectQrCode, selectTrueWallet, selectPoint]);
 
   const PaymentItem = ({check, text, color}) => {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.paymentItem}>
         {check === true ? (
-          <View style={{alignItems: 'flex-end', position: 'absolute'}}>
+          <View style={styles.paymentItemContainer}>
             <Icons name="check-circle-outline" size={25} color={color} />
           </View>
         ) : (
@@ -75,32 +75,32 @@ const PaymentType = ({setInputs}) => {
       <TouchableHighlight
         underlayColor="gray"
         onPress={() => selectType('cash')}
-        style={[styles.paymentButtonType, {backgroundColor: 'green'}]}>
+        style={[styles.paymentButtonType, styles.btnCash]}>
         <PaymentItem text="Cash" check={selectCash} color="white" />
       </TouchableHighlight>
       <TouchableHighlight
         underlayColor="gray"
         onPress={() => selectType('credit')}
-        style={[styles.paymentButtonType, {backgroundColor: 'yellow'}]}>
+        style={[styles.paymentButtonType, styles.btnCredit]}>
         <PaymentItem text="Credit Card" check={selectCredit} color="black" />
       </TouchableHighlight>
       <TouchableHighlight
         underlayColor="black"
         onPress={() => selectType('qrcode')}
-        style={[styles.paymentButtonType, {backgroundColor: 'gray'}]}>
+        style={[styles.paymentButtonType, styles.btnQrCode]}>
         <PaymentItem text="Qr Code" check={selectQrCode} color="white" />
       </TouchableHighlight>
       <TouchableHighlight
         underlayColor="gray"
         onPress={() => selectType('truewallet')}
-        style={[styles.paymentButtonType, {backgroundColor: 'orange'}]}>
+        style={[styles.paymentButtonType, styles.btnTrueWallet]}>
         <PaymentItem text="True Wallet" check={selectTrueWallet} color="blue" />
       </TouchableHighlight>
       <TouchableHighlight
         underlayColor="gray"
-        onPress={() => selectType('other')}
-        style={[styles.paymentButtonType, {backgroundColor: '#123456'}]}>
-        <PaymentItem text="Other" check={selectOther} color="snow" />
+        onPress={() => selectType('point')}
+        style={[styles.paymentButtonType, styles.btnPoint]}>
+        <PaymentItem text="Point" check={selectPoint} color="snow" />
       </TouchableHighlight>
     </View>
   );
@@ -124,6 +124,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
   },
+  btnCash: {backgroundColor: 'green'},
+  btnCredit: {backgroundColor: 'yellow'},
+  btnQrCode: {backgroundColor: 'gray'},
+  btnTrueWallet: {backgroundColor: 'orange'},
+  btnPoint: {backgroundColor: '#123456'},
+  paymentItem: {flex: 1},
+  paymentItemContainer: {alignItems: 'flex-end', position: 'absolute'},
 });
 
 export default PaymentType;

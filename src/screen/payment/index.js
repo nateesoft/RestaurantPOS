@@ -99,9 +99,9 @@ const PaymentScreen = props => {
   return (
     <View style={styles.container}>
       <View style={styles.tabOrder}>
-        <View style={{flex: 1}}>
+        <View style={styles.leftPanel}>
           <BillHeader tableNo={tableNo} />
-          <View style={{flex: 8}}>
+          <View style={styles.listItemContainer}>
             <ListItem />
           </View>
         </View>
@@ -202,6 +202,8 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: 'white',
   },
+  leftPanel: {flex: 1},
+  listItemContainer: {flex: 8},
 });
 
 export default PaymentScreen;

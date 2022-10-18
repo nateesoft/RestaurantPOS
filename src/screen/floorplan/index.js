@@ -14,7 +14,7 @@ const FloorPlaneScreen = props => {
         <FloorPlanPanel {...props} />
       </View>
       <View style={styles.leftPanel}>
-        <View style={{flex: 11}}>
+        <View style={styles.cardsAds}>
           <CardsAds />
         </View>
         <View style={styles.buttonLogout}>
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  cardsAds: {flex: 11},
 });
 
 export default FloorPlaneScreen;

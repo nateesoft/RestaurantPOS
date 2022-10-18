@@ -31,8 +31,8 @@ const FloorPlan = props => {
       {..._props}
       indicatorStyle={styles.tabBarIndicator}
       style={styles.tabBar}
-      renderIcon={({route, focused, color}) => (
-        <View style={{margin: -3}}>
+      renderIcon={() => (
+        <View style={styles.imageTabBar}>
           <MaterialCommunityIcons
             name="dice-4-outline"
             color="#bbb"
@@ -62,11 +62,11 @@ const styles = StyleSheet.create({
     height: 62,
     justifyContent: 'center',
     borderWidth: 1,
-    // borderRadius: 10,
   },
   tabBarIndicator: {
     backgroundColor: 'red',
   },
+  imageTabBar: {margin: -3},
 });
 
 export default FloorPlan;

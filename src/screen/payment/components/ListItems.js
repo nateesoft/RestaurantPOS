@@ -33,13 +33,11 @@ const ListItem = () => {
 
   const ProductItem = ({index, name, qty}) => (
     <View style={styles.item}>
-      <Text style={[styles.title, {flex: 1, textAlign: 'center'}]}>
-        {index}
-      </Text>
-      <Text numberOfLines={4} style={[styles.title, {flex: 5}]}>
+      <Text style={[styles.title, styles.itemIndex]}>{index}</Text>
+      <Text numberOfLines={4} style={[styles.title, styles.itemName]}>
         {name}
       </Text>
-      <Text style={[styles.title, {flex: 2, textAlign: 'right'}]}>{qty}</Text>
+      <Text style={[styles.title, styles.itemQty]}>{qty}</Text>
     </View>
   );
 
@@ -79,6 +77,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
   },
+  itemIndex: {flex: 1, textAlign: 'center'},
+  itemName: {flex: 5},
+  itemQty: {flex: 2, textAlign: 'right'},
 });
 
 export default ListItem;
