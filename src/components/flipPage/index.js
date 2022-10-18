@@ -5,16 +5,10 @@ import CardFlip from 'react-native-card-flip';
 const FlipPage = ({item1, item2}) => {
   return (
     <CardFlip style={styles.cardContainer} ref={card => (this.card = card)}>
-      <TouchableOpacity
-        activeOpacity={1}
-        style={[styles.card, styles.card1]}
-        onPress={() => this.card.flip()}>
+      <TouchableOpacity activeOpacity={1} style={[styles.card, styles.card1]}>
         {item1}
       </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={1}
-        style={[styles.card, styles.card2]}
-        onPress={() => this.card.flip()}>
+      <TouchableOpacity activeOpacity={1} style={[styles.card, styles.card2]}>
         {item2}
       </TouchableOpacity>
     </CardFlip>
@@ -38,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ECE2DD',
   },
   card2: {
-    backgroundColor: '#FEB12C',
+    backgroundColor: 'snow',
   },
   label: {
     lineHeight: 150,
